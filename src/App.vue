@@ -14,24 +14,16 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Merienda&display=swap');
+@import url(./global.css);
+@import url(./assets/fonts/fonts.css);
 
-*{
-  font-family: "Open Sans", sans-serif;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: lightgray;
 }
 
 #app {
-  background-color: #0d1b2a;
-  height: 100vh;
+  block-size: 100vb;
 }
-</style>
 
-<!-- 
-Цветовая палитра 
-Основной - 0d1b2a
-Дополнительный - 1b263b
-Акцентный - e0e1dd 
--->
+</style>
