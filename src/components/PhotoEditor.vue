@@ -1,5 +1,5 @@
 <template>
-  <div class="photoshop">
+  <div class="photo-editor">
     <HeaderPanel
       @show="changeUploadModal"
       @clear="clear(), closeDisplay(), updateCanvas()"
@@ -14,66 +14,64 @@
       class="header"
       ref="header"
     />
-    <div class="wrapper">
-      <SidebarPanel
-        class="sidebar"
-        @scale="scaleImage()"
-        :x="this.x"
-        :state="this.state"
-        :y="this.y"
-        :height="this.height"
-        :width="this.width"
-        :resl="this.resl"
-        :showData="this.showData"
-        ref="sidebar"
-      />
-      <div class="drawing">
-        <canvas
-          width="1250"
-          height="640"
-          ref="drawing"
-          @mousedown="handleMouseDown"
-          @mouseup="handleMouseUp"
-          @mousemove="handleMouseMove"
-          @mousewheel="handleMouseWheel"
-        />
-      </div>
-      <PippetModal
-        @show="changePippet"
-        :resl="this.resl"
-        :startX="this.startX"
-        :startY="this.startY"
-        :nowW="this.nowW"
-        :nowH="this.nowH"
-        ref="pippet"
-        v-if="showPippetModal"
-      />
-      <CurvesModal
-        @show="changeCurves"
-        @apply="changeCurves(), updateImage()"
-        :ctxRef="this.ctx"
-        :dx="this.dx"
-        :dy="this.dy"
-        :nowW="this.nowW"
-        :nowH="this.nowH"
-        :startImage="this.startImage"
-        :showCurvesModal="this.showCurvesModal"
-        ref="curves"
-        v-show="showCurvesModal"
-      />
-      <FilteringModal
-        @show="changeFiltering"
-        @apply="changeFiltering(), updateImage()"
-        :ctxRef="this.ctx"
-        :dx="this.dx"
-        :dy="this.dy"
-        :nowW="this.nowW"
-        :nowH="this.nowH"
-        :startImage="this.startImage"
-        ref="Filtering"
-        v-if="showFilterModal"
+    <SidebarPanel
+      class="sidebar"
+      @scale="scaleImage()"
+      :x="this.x"
+      :state="this.state"
+      :y="this.y"
+      :height="this.height"
+      :width="this.width"
+      :resl="this.resl"
+      :showData="this.showData"
+      ref="sidebar"
+    />
+    <div class="canvas-container">
+      <canvas
+        width="1514"
+        height="835"
+        ref="canvas-container"
+        @mousedown="handleMouseDown"
+        @mouseup="handleMouseUp"
+        @mousemove="handleMouseMove"
+        @mousewheel="handleMouseWheel"
       />
     </div>
+    <PippetModal
+      @show="changePippet"
+      :resl="this.resl"
+      :startX="this.startX"
+      :startY="this.startY"
+      :nowW="this.nowW"
+      :nowH="this.nowH"
+      ref="pippet"
+      v-if="showPippetModal"
+    />
+    <CurvesModal
+      @show="changeCurves"
+      @apply="changeCurves(), updateImage()"
+      :ctxRef="this.ctx"
+      :dx="this.dx"
+      :dy="this.dy"
+      :nowW="this.nowW"
+      :nowH="this.nowH"
+      :startImage="this.startImage"
+      :showCurvesModal="this.showCurvesModal"
+      ref="curves"
+      v-show="showCurvesModal"
+    />
+    <FilteringModal
+      @show="changeFiltering"
+      @apply="changeFiltering(), updateImage()"
+      :ctxRef="this.ctx"
+      :dx="this.dx"
+      :dy="this.dy"
+      :nowW="this.nowW"
+      :nowH="this.nowH"
+      :startImage="this.startImage"
+      ref="Filtering"
+      v-if="showFilterModal"
+    />
     <div style="display: none">
       <canvas ref="canvasHelper" />
     </div>
@@ -103,7 +101,7 @@ import PippetModal from "./PippetModal.vue";
 import CurvesModal from "./CurvesModal.vue";
 import FilteringModal from "./FilteringModal.vue";
 export default {
-  name: "PhotoShop",
+  name: "PhotoEditor",
   components: {
     SidebarPanel,
     HeaderPanel,
@@ -143,7 +141,7 @@ export default {
     };
   },
   mounted() {
-    this.canvas = this.$refs["drawing"];
+    this.canvas = this.$refs["canvas-container"];
     this.ctx = this.canvas.getContext("2d", { willReadFrequently: true });
     this.canvasHelper = this.$refs["canvasHelper"];
     this.ctxHelper = this.canvasHelper.getContext("2d", {
@@ -441,24 +439,37 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.photoshop {
+.photo-editor {
   height: 100%;
+  display: grid;
+  grid-template-columns: 200px auto 200px;
+  grid-template-rows: 80px auto 80px;
 }
-.wrapper {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  height: calc(100% - 80px);
+
+.header {
+  grid-row: 1 / 2;
+  grid-column: 2 / 3;
+  align-self: center;
 }
+
+.sidebar {
+  grid-row: 2 / 3;
+  grid-column: 1 / 2;
+}
+
 .source {
   display: none;
 }
 
-.drawing {
-  height: 642px;
-  background-image: url("@/assets/1674303626_catherineasquithgallery-com-p-fon-serii-kvadratiki-foto-22.jpg");
+.canvas-container {
+  grid-row: 2 / 3;
+  grid-column: 2 / 3;
+  inline-size: 100%;
+  block-size: 100%;
+  background-image: url(../assets/img/background-img.jpg);
   background-size: 20%;
   background-repeat: repeat;
-  border: 1px solid #e0e1dd;
+  border: 1px solid gray;
 }
+
 </style>
