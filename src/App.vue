@@ -23,7 +23,7 @@ export default {
 
 body {
   font-family: "Montserrat", sans-serif;
-  background-color: lightgray;
+  background-color: darkgray;
 }
 
 </style>

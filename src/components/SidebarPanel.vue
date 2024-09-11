@@ -85,8 +85,7 @@ export default {
 .content {
   width: 200px;
   height: 100%;
-  border-right: 1px solid black;
-  background-color: #1b263b;
+  border-right: 1px solid gray;
   display: flex;
   flex-direction: column;
   row-gap: 20px;
@@ -105,11 +104,11 @@ export default {
   height: 35px;
   width: 35px;
   border-radius: 50%;
-  border: 1px solid #e0e1dd;
+  border: 1px solid gray;
   }
 
   &__font{
-    color: #e0e1dd;
+    color: black;
   }
 
   &__inf{
@@ -119,7 +118,7 @@ export default {
   }
 }
 .font{
-  color: #e0e1dd;
+  color: black;
   &_center{
     align-self: center;
   }

@@ -1,30 +1,48 @@
 <template>
-  <div class="content">
-    <button class="button" @click="$emit('show')" title="Upload your image!">
-      <img class="button__img" src="@/assets/download-photo-svgrepo-com.svg" alt="">
-    </button>
-    <button class="button" :disabled="!startImage" :class="{ active: isPippet}" @click="$emit('pippet')" title="Color picker. To select the second color, click with Alt pressed.">
-      <img class="button__img" src="@/assets/pipette.svg" alt="">
-    </button>
-    <button class="button" :disabled="!startImage" :class="{ active: isGrab}" @click="$emit('grab')" title="Grab your image">
-      <img class="button__img" src="@/assets/hand-grab.svg" alt="">
-    </button>
-    <button class="button" :disabled="!startImage" @click="$emit('scale')" title="Resize your image">
-      <img class="button__img" src="@/assets/scale-up.svg" alt="">
-    </button>
-    <button class="button" :disabled="!startImage" :class="{ active: isCurves}" @click="$emit('curve')" title="Curves">
-      <img class="button__img" src="@/assets/curve.svg" alt="">
-    </button>
-    <button class="button" :disabled="!startImage" :class="{ active: isFiltering}" @click="$emit('filtering')" title="Filtering">
-      <img class="button__img" src="@/assets/filtering.svg" alt="">
-    </button>
-    <button class="button" :disabled="!startImage" @click="$emit('save')" title="Save your image">
-      <img class="button__img" src="@/assets/save.svg" alt="">
-    </button>
-    <button class="button" :disabled="!startImage" @click="$emit('clear')" title="Clear">
-      <img class="button__img" src="@/assets/delete-2-svgrepo-com.svg" alt="">
-    </button>
-  </div>
+  <nav class="navigation">
+    <ul class="tool-panel">
+      <li class="tool-panel__item">
+        <button class="button" @click="$emit('show')" title="Загрузить изображение...">
+          <img class="button__img" src="../assets/svg/add-image.svg" alt="">
+        </button>
+      </li>
+      <li class="tool-panel__item">
+        <button class="button" :disabled="!startImage" :class="{ active: isPippet}" @click="$emit('pippet')" title='Пипетка (для выбора дополнительного цвета зажмите клавишу "Alt")'>
+          <img class="button__img" src="../assets/svg/pipette.svg" alt="">
+        </button>
+      </li>
+      <li class="tool-panel__item">
+        <button class="button" :disabled="!startImage" :class="{ active: isGrab}" @click="$emit('grab')" title="Перетащить изображение">
+          <img class="button__img" src="../assets/svg/grab-image.svg" alt="">
+        </button>
+      </li>
+      <li class="tool-panel__item">
+        <button class="button" :disabled="!startImage" @click="$emit('scale')" title="Изменить размер изображения">
+          <img class="button__img" src="../assets/svg/resize-image.svg" alt="">
+        </button>
+      </li>
+      <li class="tool-panel__item">
+        <button class="button" :disabled="!startImage" :class="{ active: isCurves}" @click="$emit('curve')" title="Кривые">
+          <img class="button__img" src="../assets/svg/graph.svg" alt="">
+        </button>
+      </li>
+      <li class="tool-panel__item">
+        <button class="button" :disabled="!startImage" :class="{ active: isFiltering}" @click="$emit('filtering')" title="Изменить фильтры изображения">
+          <img class="button__img" src="../assets/svg/filter-image.svg" alt="">
+        </button>
+      </li>
+      <li class="tool-panel__item">
+        <button class="button" :disabled="!startImage" @click="$emit('save')" title="Сохранить изображение">
+          <img class="button__img" src="../assets/svg/save-image.svg" alt="">
+        </button>
+      </li>
+      <li class="tool-panel__item">
+        <button class="button" :disabled="!startImage" @click="$emit('clear')" title="Очистить холст">
+          <img class="button__img" src="../assets/svg/delete-image.svg" alt="">
+        </button>
+      </li>
+    </ul>
+  </nav>
 </template>
   
   <script>
@@ -76,18 +94,9 @@ export default {
 </script>
   
   <style lang="scss" scoped>
-.content {
-  height: 80px;
-  background-color: #1b263b;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  column-gap: 50px;
-  padding: 10px;
-}
 .button{
-  background-color: #778da9;
-  border: 1px solid #0d1b2a;
+  background-color: white;
+  border: 1px solid black;
   border-radius: 10px;
   padding: 7px;
   height: fit-content;
@@ -97,18 +106,28 @@ export default {
     height: 35px;
   }
 
-  &:last-child{
+  &:disabled{
+    background-color: rgb(122, 122, 122);
+  }
+
+  &.active{
+    background-color: rgb(122, 122, 122);
+  }
+}
+
+.tool-panel {
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 50px;
+  padding: 10px;
+
+  &__item:last-child {
     margin-left: auto;
     margin-right: 20px;
   }
 
-  &:disabled{
-    background-color: #212a39;
-  }
-
-  &.active{
-    background-color: #1b263b;
-  }
 }
 </style>
   
