@@ -1,5 +1,6 @@
 <template>
   <div class="photo-editor">
+    <h1 class="main-title">WebPE</h1>
     <HeaderPanel
       @show="changeUploadModal"
       @clear="clear(), closeDisplay(), updateCanvas()"
@@ -446,6 +447,16 @@ export default {
   grid-template-rows: 80px auto 80px;
 }
 
+.main-title {
+  font-size: 45px;
+  color: black;
+  font-weight: bold;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  align-self: center;
+  justify-self: center;
+}
+
 .header {
   grid-row: 1 / 2;
   grid-column: 2 / 3;
@@ -466,7 +477,7 @@ export default {
   grid-column: 2 / 3;
   inline-size: 100%;
   block-size: 100%;
-  background-image: url(../assets/img/background-img.jpg);
+  background-color: #2f2f2f;
   background-size: 20%;
   background-repeat: repeat;
   border: 1px solid gray;

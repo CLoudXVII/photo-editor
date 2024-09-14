@@ -2,18 +2,19 @@
   <div class="content">
     <p class="font">x: {{ x }}px, y: {{ y }}px</p>
     <template v-if="showData">
-      <p class="font">Исходные параметры изображения:</p>
       <div class="params">
         <p class="font">Ширина: {{ width }}px</p> 
         <p class="font">Высота: {{ height }}px</p>
       </div>
-      <select :disabled="state!=''" v-model="scale" @change="$emit('scale')">
+      <select class="scale-select" :disabled="state!=''" v-model="scale" @change="$emit('scale')">
         <option value="12">12%</option>
         <option value="25">25%</option>
         <option value="50">50%</option>
+        <option value="75">75%</option>
         <option value="100">100%</option>
         <option value="150">150%</option>
         <option value="200">200%</option>
+        <option value="250">250%</option>
         <option value="300">300%</option>
       </select>
       <div v-if="resl != null" class="color">
@@ -92,6 +93,7 @@ export default {
   padding: 10px;
   align-items: baseline;
 }
+
 .color {
   display: flex;
   flex-direction: row;
@@ -117,17 +119,25 @@ export default {
     row-gap: 10px;
   }
 }
+
 .font{
   color: black;
   &_center{
     align-self: center;
   }
 }
+
 .params{
-  padding-left: 15px;
   display: flex;
   flex-direction: column;
-  row-gap: 7px;
+  row-gap: 8px;
+}
+
+.scale-select {
+  font-size: 14px;
+  border-radius: 15%;
+  padding: 5px;
+  outline: none;
 }
 </style>
   

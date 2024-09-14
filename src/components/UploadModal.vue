@@ -1,6 +1,6 @@
 <template>
   <div class="modal-wrapper">
-    <div class="modal">
+    <dialog class="modal">
       <div class="modal__header header">
         <p class="header__text">Выберите фотографию</p>
         <button class="header__button" @click="$emit('show')">X</button>
@@ -24,11 +24,11 @@
       >
         Отобразить
       </button>
-    </div>
+    </dialog>
   </div>
 </template>
     
-    <script>
+<script>
 export default {
   name: "UploadModal",
   data() {
