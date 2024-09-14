@@ -2,27 +2,33 @@
   <div class="modal-wrapper">
     <dialog class="modal">
       <div class="modal__header header">
-        <p class="header__text">Выберите фотографию</p>
-        <button class="header__button" @click="$emit('show')">X</button>
+        <p class="header__text">Выбор изображения</p>
+        <button class="header__button" @click="$emit('show')">
+          <span class="cross">
+            +
+          </span>
+        </button>
       </div>
-      <label>
-        URL адрес:
-        <input class="input" type="text" @change="savenewUrl" v-model="url" />
-      </label>
-      <label>
-        Файл:
-        <input
-          class="input"
-          type="file"
-          ref="inputFile"
-          @change="savenewFile"
-        />
-      </label>
+      <div class="image-input">
+        <label>
+          Ссылка:
+          <input class="input" type="text" @change="savenewUrl" v-model="url" />
+        </label>
+        <label>
+          Выбрать файл:
+          <input
+            class="input"
+            type="file"
+            ref="inputFile"
+            @change="savenewFile"
+          />
+        </label>
+      </div>
       <button
         class="button"
         @click="saveResult(), $emit('show'), $emit('download')"
       >
-        Отобразить
+        Подтвердить
       </button>
     </dialog>
   </div>
@@ -76,7 +82,7 @@ export default {
 .modal-wrapper {
   height: 100vh;
   width: calc(100vw - 17px);
-  background-color: rgba(27, 38, 59, 0.9);
+  background-color: rgba(0, 0, 0, 0.5);
   position: absolute;
   left: 0;
   top: 0;
@@ -84,16 +90,17 @@ export default {
   align-items: center;
   justify-content: center;
 }
+
 .modal {
+  width: 25vw;
+  height: 25vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #e0e1dd;
-  height: 30vh;
-  width: 30vw;
-  padding: 10px;
-  border-radius: 4px;
-  border: 1px solid black;
+  background-color: lightgray;
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid gray;
 
   &__header {
     display: flex;
@@ -110,21 +117,45 @@ export default {
   &__button {
     background: none;
     border: none;
-    color: red;
-    font-size: 24px;
+    font-size: 50px;
     cursor: pointer;
+    transition: 0.3s;
+  }
+  &__button:hover {
+    transform: scale(1.25);
   }
 }
+
+.cross {
+  display: block;
+  transform: rotate(45deg);
+  line-height: 0;
+}
+
+.image-input {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+}
+
 .button {
-  background-color: #778da9;
-  border: 1px solid #0d1b2a;
+  background-color: white;
+  border: 1px solid gray;
   border-radius: 10px;
   padding: 10px;
   height: fit-content;
+  transition: 0.3s;
 }
+
+.button:hover {
+  background-color: black;
+  color: white;
+}
+
 .input {
   height: 20px;
   border-radius: 5px;
+  outline: none;
 }
 </style>
     

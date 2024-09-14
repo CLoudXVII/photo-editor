@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <p class="font">x: {{ x }}px, y: {{ y }}px</p>
+    <p class="font">x: {{ x }}; y: {{ y }}</p>
     <template v-if="showData">
       <div class="params">
         <p class="font">Ширина: {{ width }}px</p> 

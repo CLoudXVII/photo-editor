@@ -1,131 +1,74 @@
 <template>
   <div class="modal">
-    <div class="modal__container header">
-      <p class="header__text">Определение цвета пикселя</p>
-      <button class="header__button" @click="$emit('show')">X</button>
+    <div class="modal__header header">
+      <p class="header__text">Пипетка</p>
+      <button class="header__button" @click="$emit('show')">
+        <span class="cross">
+          +
+        </span>
+      </button>
     </div>
-    <div class="modal__line">
+    <div class="modal__container">
+      <div class="modal__column">
       <div class="modal__element">
-        <input class="color-button" type="radio" :style="color1" />
+        <input class="color-button" type="radio" :style="color1"/>
       </div>
-      <div class="modal__element">
-        <input class="color-button" type="radio" :style="color2" />
-      </div>
-    </div>
-    <div class="modal__line">
-      <div class="modal__element">
-        <p
-          class="modal__heading"
-          title="В модели CIE 1931 Y - это яркость, Z почти равно синему (в CIE RGB), а X представляет собой 
-сочетание трех кривых CIE RGB, выбранных неотрицательными"
-        >
-          XYZ
-        </p>
-      </div>
-      <div class="modal__element">
-        <p
-          class="modal__heading"
-          title="В модели CIE 1931 Y - это яркость, Z почти равно синему (в CIE RGB), а X представляет собой 
-сочетание трех кривых CIE RGB, выбранных неотрицательными"
-        >
-          XYZ
-        </p>
-      </div>
-    </div>
-    <div class="modal__line">
-      <div class="modal__element">
+      <div class="modal__element" title="В модели CIE 1931 Y - это яркость, Z почти равно синему (в CIE RGB), а X представляет собой 
+      сочетание трех кривых CIE RGB, выбранных неотрицательными">
+        <p class="modal__heading">XYZ:</p>
         <p>{{ XYZ1 }}</p>
       </div>
-      <div class="modal__element">
-        <p>{{ XYZ2 }}</p>
-      </div>
-    </div>
-    <div class="modal__line">
-      <div class="modal__element">
-        <p
-          class="modal__heading"
-          title="Цветовое пространство RGB (Red, Green, Blue)"
-        >
-          RGB
-        </p>
-      </div>
-      <div class="modal__element">
-        <p
-          class="modal__heading"
-          title="Цветовое пространство RGB (Red, Green, Blue)"
-        >
-          RGB
-        </p>
-      </div>
-    </div>
-    <div class="modal__line">
-      <div class="modal__element">
+      <div class="modal__element" title="Цветовое пространство RGB (Red, Green, Blue)">
+        <p class="modal__heading">RGB:</p>
         <p>{{ RGB1 }}</p>
       </div>
-      <div class="modal__element">
-        <p>{{ RGB2 }}</p>
-      </div>
-    </div>
-    <div class="modal__line">
-      <div class="modal__element">
-        <p class="modal__heading" title="Значения цвета в LAB задаются через светлоту (Lightness) и две координаты, отвечающие за хроматическую
-составляющую: тон и насыщенность.A — положение цвета в диапазоне от зелёного до красного, B — от синего до жёлтого.">Lab</p>
-      </div>
-      <div class="modal__element">
-        <p class="modal__heading" title="Значения цвета в LAB задаются через светлоту (Lightness) и две координаты, отвечающие за хроматическую
-составляющую: тон и насыщенность.A — положение цвета в диапазоне от зелёного до красного, B — от синего до жёлтого.">Lab</p>
-      </div>
-    </div>
-    <div class="modal__line">
-      <div class="modal__element">
+      <div class="modal__element" title="Значения цвета в LAB задаются через светлоту (Lightness) и две координаты, отвечающие за хроматическую
+      составляющую: тон и насыщенность.A — положение цвета в диапазоне от зелёного до красного, B — от синего до жёлтого.">
+        <p class="modal__heading">Lab:</p>
         <p>{{ Lab1 }}</p>
       </div>
       <div class="modal__element">
-        <p>{{ Lab2 }}</p>
-      </div>
-    </div>
-    <div class="modal__line">
-      <div class="modal__element">
-        <p class="modal__heading">X</p>
-      </div>
-      <div class="modal__element">
-        <p class="modal__heading">X</p>
-      </div>
-    </div>
-    <div class="modal__line">
-      <div class="modal__element">
+        <p class="modal__heading">X:</p>
         <p>{{ X1 }}</p>
       </div>
       <div class="modal__element">
-        <p>{{ X2 }}</p>
-      </div>
-    </div>
-    <div class="modal__line">
-      <div class="modal__element">
-        <p class="modal__heading">Y</p>
-      </div>
-      <div class="modal__element">
-        <p class="modal__heading">Y</p>
-      </div>
-    </div>
-    <div class="modal__line">
-      <div class="modal__element">
+        <p class="modal__heading">Y:</p>
         <p>{{ Y1 }}</p>
       </div>
+    </div>
+    <div class="modal__column">
       <div class="modal__element">
+        <input class="color-button" type="radio" :style="color2"/>
+      </div>
+      <div class="modal__element" title="В модели CIE 1931 Y - это яркость, Z почти равно синему (в CIE RGB), а X представляет собой 
+      сочетание трех кривых CIE RGB, выбранных неотрицательными">
+        <p class="modal__heading">XYZ:</p>
+        <p>{{ XYZ2 }}</p>
+      </div>
+      <div class="modal__element" title="Цветовое пространство RGB (Red, Green, Blue)">
+        <p class="modal__heading">RGB:</p>
+        <p>{{ RGB2 }}</p>
+      </div>
+      <div class="modal__element" title="Значения цвета в LAB задаются через светлоту (Lightness) и две координаты, отвечающие за хроматическую
+      составляющую: тон и насыщенность.A — положение цвета в диапазоне от зелёного до красного, B — от синего до жёлтого.">
+        <p class="modal__heading">Lab:</p>
+        <p>{{ Lab2 }}</p>
+      </div>
+      <div class="modal__element">
+        <p class="modal__heading">X:</p>
+        <p>{{ X2 }}</p>
+      </div>
+      <div class="modal__element">
+        <p class="modal__heading">Y:</p>
         <p>{{ Y2 }}</p>
       </div>
     </div>
-    <div class="modal__line" v-if="contrastRatio">
-      <p :style="{ color: contrastRatio < 4.5 ? 'red' : 'black' }">
-        Contrast {{ contrastRatio }}:1
-      </p>
     </div>
   </div>
 </template>
 <script>
 export default {
-  name: "PippetModal",
+  name: "PippeteeModal",
   props: {
     resl: Array,
     startX: Number,
@@ -310,37 +253,45 @@ export default {
 <style lang="scss" scoped>
 .modal {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  background-color: #778da9;
-  width: 25vw;
+  left: 210px;
+  top: 90px;
+  background-color: white;
   padding: 15px;
-  border-radius: 20px;
+  border: 1px solid gray;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   row-gap: 7px;
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 
   &__container {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    column-gap: 16px;
   }
 
-  &__line {
+  &__column {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    row-gap: 4px;
+    width: 180px;
   }
 
   &__element {
-    width: 100%;
+    display: flex;
+    flex-direction: row;
+    column-gap: 8px;
     text-align: center;
+    cursor: default;
   }
 
   &__heading {
-    margin-top: 7px;
     font-weight: 600;
   }
 }
@@ -349,7 +300,7 @@ export default {
   appearance: none;
   cursor: pointer;
   border: 1px solid black;
-  border-radius: 0;
+  border-radius: 50px;
   width: 23px;
   height: 23px;
   &:checked {
@@ -361,12 +312,23 @@ export default {
   &__text {
     font-size: 20px;
   }
+
   &__button {
     background: none;
     border: none;
-    color: red;
-    font-size: 24px;
+    font-size: 48px;
     cursor: pointer;
+    transition: 0.3s;
   }
+
+  &__button:hover {
+    transform: scale(1.25);
+  }
+}
+
+.cross {
+  display: block;
+  transform: rotate(45deg);
+  line-height: 0;
 }
 </style>

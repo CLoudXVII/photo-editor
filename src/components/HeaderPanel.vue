@@ -7,7 +7,7 @@
         </button>
       </li>
       <li class="tool-panel__item">
-        <button class="button" :disabled="!startImage" :class="{ active: isPippet}" @click="$emit('pippet')" title='Пипетка (для выбора дополнительного цвета зажмите клавишу "Alt")'>
+        <button class="button" :disabled="!startImage" :class="{ active: isPippete}" @click="$emit('Pippete')" title='Пипетка (для выбора дополнительного цвета зажмите клавишу "Alt")'>
           <img class="button__img" src="../assets/svg/pipette.svg" alt="">
         </button>
       </li>
@@ -61,8 +61,8 @@ export default {
   methods: {
   },
   computed:{
-    isPippet(){
-      if (this.state == 'pippet'){
+    isPippete(){
+      if (this.state == 'Pippete'){
         return true
       } else {
         return false

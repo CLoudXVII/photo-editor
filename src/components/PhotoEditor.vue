@@ -5,7 +5,7 @@
       @show="changeUploadModal"
       @clear="clear(), closeDisplay(), updateCanvas()"
       @scale="changeScaleModal"
-      @pippet="changePippet"
+      @Pippete="changePippete"
       @grab="changeGrab"
       @curve="changeCurves"
       @filtering="changeFiltering"
@@ -38,15 +38,15 @@
         @mousewheel="handleMouseWheel"
       />
     </div>
-    <PippetModal
-      @show="changePippet"
+    <PippeteModal
+      @show="changePippete"
       :resl="this.resl"
       :startX="this.startX"
       :startY="this.startY"
       :nowW="this.nowW"
       :nowH="this.nowH"
-      ref="pippet"
-      v-if="showPippetModal"
+      ref="Pippete"
+      v-if="showPippeteModal"
     />
     <CurvesModal
       @show="changeCurves"
@@ -98,7 +98,7 @@ import HeaderPanel from "./HeaderPanel.vue";
 import SidebarPanel from "./SidebarPanel.vue";
 import UploadModal from "./UploadModal.vue";
 import ScaleModal from "./ScaleModal.vue";
-import PippetModal from "./PippetModal.vue";
+import PippeteModal from "./PippeteModal.vue";
 import CurvesModal from "./CurvesModal.vue";
 import FilteringModal from "./FilteringModal.vue";
 export default {
@@ -108,7 +108,7 @@ export default {
     HeaderPanel,
     UploadModal,
     ScaleModal,
-    PippetModal,
+    PippeteModal,
     CurvesModal,
     FilteringModal,
   },
@@ -124,7 +124,7 @@ export default {
       y: 0,
       showUploadModal: false,
       showScaleModal: false,
-      showPippetModal: false,
+      showPippeteModal: false,
       showCurvesModal: false,
       showFilterModal: false,
       showData: false,
@@ -160,7 +160,7 @@ export default {
       this.isDragging = true;
       this.startX = e.offsetX - this.dx;
       this.startY = e.offsetY - this.dy;
-      if (this.state == "pippet" && this.$refs.modal.result != null) {
+      if (this.state == "Pippete" && this.$refs.modal.result != null) {
         this.resl = this.ctx.getImageData(this.x, this.y, 1, 1).data;
       }
     },
@@ -191,17 +191,17 @@ export default {
       } else {
         this.state = "grab";
       }
-      this.showPippetModal = false;
+      this.showPippeteModal = false;
       this.showCurvesModal = false;
       this.showFilterModal = false;
     },
-    changePippet() {
-      if (this.state == "pippet") {
+    changePippete() {
+      if (this.state == "Pippete") {
         this.state = "";
       } else {
-        this.state = "pippet";
+        this.state = "Pippete";
       }
-      this.showPippetModal = !this.showPippetModal;
+      this.showPippeteModal = !this.showPippeteModal;
       this.showCurvesModal = false;
       this.showFilterModal = false;
     },
@@ -212,7 +212,7 @@ export default {
         this.state = "curves";
       }
       this.showCurvesModal = !this.showCurvesModal;
-      this.showPippetModal = false;
+      this.showPippeteModal = false;
       this.showFilterModal = false;
     },
     changeFiltering() {
@@ -221,13 +221,13 @@ export default {
       } else {
         this.state = "filter";
       }
-      this.showPippetModal = false;
+      this.showPippeteModal = false;
       this.showCurvesModal = false;
       this.showFilterModal = !this.showFilterModal;
     },
     handleMouseWheel(event) {
       if (
-        this.state != "pippet" &&
+        this.state != "Pippete" &&
         this.startImage != null &&
         this.state != "curves" &&
         this.state != "filter"
