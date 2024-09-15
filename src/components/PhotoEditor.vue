@@ -1,10 +1,10 @@
 <template>
   <div class="photo-editor">
     <h1 class="main-title">WebPE</h1>
-    <HeaderPanel
-      @show="changeUploadModal"
+    <ToolPanel
+      @show="changeImageUploadTool"
       @clear="clear(), closeDisplay(), updateCanvas()"
-      @scale="changeScaleModal"
+      @scale="changeResizingTool"
       @Pippete="changePippete"
       @grab="changeGrab"
       @curve="changeCurves"
@@ -15,7 +15,7 @@
       class="header"
       ref="header"
     />
-    <SidebarPanel
+    <InformationPanel
       class="sidebar"
       @scale="scaleImage()"
       :x="this.x"
@@ -38,7 +38,7 @@
         @mousewheel="handleMouseWheel"
       />
     </div>
-    <PippeteModal
+    <PippeteTool
       @show="changePippete"
       :resl="this.resl"
       :startX="this.startX"
@@ -46,9 +46,9 @@
       :nowW="this.nowW"
       :nowH="this.nowH"
       ref="Pippete"
-      v-if="showPippeteModal"
+      v-if="showPippeteTool"
     />
-    <CurvesModal
+    <CurvesTool
       @show="changeCurves"
       @apply="changeCurves(), updateImage()"
       :ctxRef="this.ctx"
@@ -57,11 +57,11 @@
       :nowW="this.nowW"
       :nowH="this.nowH"
       :startImage="this.startImage"
-      :showCurvesModal="this.showCurvesModal"
+      :showCurvesTool="this.showCurvesTool"
       ref="curves"
-      v-show="showCurvesModal"
+      v-show="showCurvesTool"
     />
-    <FilteringModal
+    <FiltrationTool
       @show="changeFiltering"
       @apply="changeFiltering(), updateImage()"
       :ctxRef="this.ctx"
@@ -76,41 +76,41 @@
     <div style="display: none">
       <canvas ref="canvasHelper" />
     </div>
-    <UploadModal
-      v-show="showUploadModal"
-      @show="changeUploadModal"
+    <ImageUploadTool
+      v-show="showImageUploadTool"
+      @show="changeImageUploadTool"
       @download="clear(), draw(), showDisplay()"
       ref="modal"
     />
-    <ScaleModal
+    <ResizingTool
       :nowH="this.nowH"
       :nowW="this.nowW"
-      v-show="showScaleModal"
-      @show="changeScaleModal"
-      ref="scaleModal"
+      v-show="showResizingTool"
+      @show="changeResizingTool"
+      ref="ResizingTool"
       @resize="resize"
     />
   </div>
 </template>
 
 <script>
-import HeaderPanel from "./HeaderPanel.vue";
-import SidebarPanel from "./SidebarPanel.vue";
-import UploadModal from "./UploadModal.vue";
-import ScaleModal from "./ScaleModal.vue";
-import PippeteModal from "./PippeteModal.vue";
-import CurvesModal from "./CurvesModal.vue";
-import FilteringModal from "./FilteringModal.vue";
+import ToolPanel from "./ToolPanel.vue";
+import InformationPanel from "./InformationPanel.vue";
+import ImageUploadTool from "./ImageUploadTool.vue";
+import ResizingTool from "./ResizingTool.vue";
+import PippeteTool from "./PippeteTool.vue";
+import CurvesTool from "./CurvesTool.vue";
+import FiltrationTool from "./FiltrationTool.vue";
 export default {
   name: "PhotoEditor",
   components: {
-    SidebarPanel,
-    HeaderPanel,
-    UploadModal,
-    ScaleModal,
-    PippeteModal,
-    CurvesModal,
-    FilteringModal,
+    InformationPanel,
+    ToolPanel,
+    ImageUploadTool,
+    ResizingTool,
+    PippeteTool,
+    CurvesTool,
+    FiltrationTool,
   },
   data() {
     return {
@@ -122,10 +122,10 @@ export default {
       resl: null,
       x: 0,
       y: 0,
-      showUploadModal: false,
-      showScaleModal: false,
-      showPippeteModal: false,
-      showCurvesModal: false,
+      showImageUploadTool: false,
+      showResizingTool: false,
+      showPippeteTool: false,
+      showCurvesTool: false,
       showFilterModal: false,
       showData: false,
       height: 0,
@@ -191,8 +191,8 @@ export default {
       } else {
         this.state = "grab";
       }
-      this.showPippeteModal = false;
-      this.showCurvesModal = false;
+      this.showPippeteTool = false;
+      this.showCurvesTool = false;
       this.showFilterModal = false;
     },
     changePippete() {
@@ -201,8 +201,8 @@ export default {
       } else {
         this.state = "Pippete";
       }
-      this.showPippeteModal = !this.showPippeteModal;
-      this.showCurvesModal = false;
+      this.showPippeteTool = !this.showPippeteTool;
+      this.showCurvesTool = false;
       this.showFilterModal = false;
     },
     changeCurves() {
@@ -211,8 +211,8 @@ export default {
       } else {
         this.state = "curves";
       }
-      this.showCurvesModal = !this.showCurvesModal;
-      this.showPippeteModal = false;
+      this.showCurvesTool = !this.showCurvesTool;
+      this.showPippeteTool = false;
       this.showFilterModal = false;
     },
     changeFiltering() {
@@ -221,8 +221,8 @@ export default {
       } else {
         this.state = "filter";
       }
-      this.showPippeteModal = false;
-      this.showCurvesModal = false;
+      this.showPippeteTool = false;
+      this.showCurvesTool = false;
       this.showFilterModal = !this.showFilterModal;
     },
     handleMouseWheel(event) {
@@ -315,11 +315,11 @@ export default {
         );
       }
     },
-    changeUploadModal() {
-      this.showUploadModal = !this.showUploadModal;
+    changeImageUploadTool() {
+      this.showImageUploadTool = !this.showImageUploadTool;
     },
-    changeScaleModal() {
-      this.showScaleModal = !this.showScaleModal;
+    changeResizingTool() {
+      this.showResizingTool = !this.showResizingTool;
     },
     updateImage() {
       let newImage = this.ctx.getImageData(
@@ -370,8 +370,8 @@ export default {
       const img = this.ctx.getImageData(dx, dy, this.nowW, this.nowH);
       const originalWidth = this.nowW;
       const originalHeight = this.nowH;
-      const newHeight = this.$refs.scaleModal.outputH;
-      const newWidth = this.$refs.scaleModal.outputW;
+      const newHeight = this.$refs.ResizingTool.outputH;
+      const newWidth = this.$refs.ResizingTool.outputW;
       const scaleX = originalWidth / newWidth;
       const scaleY = originalHeight / newHeight;
       const newData = new Uint8ClampedArray(newWidth * newHeight * 4);

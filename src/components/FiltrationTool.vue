@@ -104,7 +104,7 @@
 </template>
 <script>
 export default {
-  name: "FilteringModal",
+  name: "FiltrationTool",
   props: {
     dx: Number,
     dy: Number,

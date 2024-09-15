@@ -82,14 +82,14 @@
 <script>
 import Chart from "chart.js/auto";
 export default {
-  name: "CurvesModal",
+  name: "CurvesTool",
   props: {
     dx: Number,
     dy: Number,
     nowW: Number,
     nowH: Number,
     ctxRef: CanvasRenderingContext2D,
-    showCurvesModal: Boolean,
+    showCurvesTool: Boolean,
     startImage: Object,
   },
   data() {
@@ -297,7 +297,7 @@ export default {
     },
   },
   watch: {
-    showCurvesModal() {
+    showCurvesTool() {
       this.calculate();
     },
     imgData() {

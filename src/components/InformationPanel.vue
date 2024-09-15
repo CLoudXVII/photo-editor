@@ -30,7 +30,7 @@
   
   <script>
 export default {
-  name: "SidebarPanel",
+  name: "InformationPanel",
   props: {
     x: Number,
     y: Number,

@@ -36,7 +36,7 @@
     
 <script>
 export default {
-  name: "UploadModal",
+  name: "ImageUploadTool",
   data() {
     return {
       Url: null,

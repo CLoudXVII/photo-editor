@@ -47,7 +47,7 @@
   
   <script>
 export default {
-  name: "HeaderPanel",
+  name: "ToolPanel",
   props: {
     state: String,
     startImage: Object,
@@ -93,7 +93,7 @@ export default {
 };
 </script>
   
-  <style lang="scss" scoped>
+<style lang="scss" scoped>
 .button{
   background-color: white;
   border: 1px solid black;
@@ -101,6 +101,7 @@ export default {
   padding: 7px;
   height: fit-content;
   margin-left: 20px;
+  transition: 0.2s;
 
   &__img{
     height: 35px;
@@ -113,6 +114,10 @@ export default {
   &.active{
     background-color: rgb(122, 122, 122);
   }
+
+  &:not(:disabled):hover {
+    background-color: rgb(197, 197, 197);
+  }
 }
 
 .tool-panel {
@@ -120,14 +125,6 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: center;
-  column-gap: 50px;
-  padding: 10px;
-
-  &__item:last-child {
-    margin-left: auto;
-    margin-right: 20px;
-  }
-
 }
 </style>
   

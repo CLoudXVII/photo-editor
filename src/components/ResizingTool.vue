@@ -63,7 +63,7 @@
 import ToolTipe from "./ToolTipe.vue";
 
 export default {
-  name: "ScaleModal",
+  name: "ResizingTool",
   props: {
     nowW: Number,
     nowH: Number,
@@ -145,6 +145,7 @@ label {
   align-items: center;
   column-gap: 5px;
 }
+
 .modal-wrapper {
   height: 100vh;
   width: calc(100vw - 17px);
@@ -156,6 +157,7 @@ label {
   align-items: center;
   justify-content: center;
 }
+
 .modal {
   display: flex;
   flex-direction: column;
@@ -178,9 +180,11 @@ label {
 }
 
 .header {
+  
   &__text {
     font-size: 20px;
   }
+
   &__button {
     background: none;
     border: none;
@@ -189,6 +193,7 @@ label {
     cursor: pointer;
   }
 }
+
 .button {
   background-color: #778da9;
   border: 1px solid #0d1b2a;
@@ -196,9 +201,11 @@ label {
   padding: 10px;
   height: fit-content;
 }
+
 .input {
   height: 20px;
   border-radius: 5px;
 }
+
 </style>
       
