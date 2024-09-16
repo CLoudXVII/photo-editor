@@ -7,13 +7,6 @@
           <span class="cross">+</span>
         </button>
       </div>
-      <label>
-        Единицы измерения:
-        <select v-model="type" @change="chooseType">
-          <option value="pixels">В пикселях</option>
-          <option value="persentage">В процентах</option>
-        </select>
-      </label>
       <div class="modal__container">
         <input
           class="input"
@@ -31,14 +24,16 @@
           @change="updateHeight"
         />
       </div>
-      <div class="modal__container">
-        Разрешение
-        <p>До: {{ resNow }} MP</p>
-        <p>После: {{ resAfter }} MP</p>
-      </div>
       <label>
         Сохранять пропорции:
         <input type="checkbox" v-model="proprtions" />
+      </label>
+      <label>
+        Единицы измерения:
+        <select v-model="type" @change="chooseType">
+          <option value="pixels">В пикселях</option>
+          <option value="persentage">В процентах</option>
+        </select>
       </label>
       <label>
         Алгоритм интерполяции
@@ -46,10 +41,13 @@
           <option value="nearest">Ближайшие соседи</option>
         </select>
         <ToolTipe
-          text="Nearest Neighbor: Each pixel in the new image is assigned the value of the
-      nearest pixel in the original image."
+          text="Ближайший сосед: Каждому пикселю в новом изображении присваивается значение ближайшего пикселя в исходном изображении."
         />
       </label>
+      <div class="modal__container">
+        <p>До: {{ resNow }} MP</p>
+        <p>После: {{ resAfter }} MP</p>
+      </div>
       <button class="button" @click="$emit('show'), $emit('resize')">
         Отобразить
       </button>
@@ -159,9 +157,8 @@ label {
 .modal {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   background-color: white;
-  height: 40vh;
+  row-gap: 24px;
   width: 25vw;
   padding: 10px;
   border-radius: 10px;

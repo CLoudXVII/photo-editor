@@ -254,7 +254,7 @@ export default {
 .modal {
   position: absolute;
   left: 210px;
-  top: 90px;
+  top: 70px;
   background-color: white;
   padding: 15px;
   border: 1px solid gray;

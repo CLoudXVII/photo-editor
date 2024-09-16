@@ -29,8 +29,8 @@
     />
     <div class="canvas-container">
       <canvas
-        width="1514"
-        height="835"
+        width="1520"
+        height="854"
         ref="canvas-container"
         @mousedown="handleMouseDown"
         @mouseup="handleMouseUp"
@@ -480,7 +480,13 @@ export default {
   background-color: #2f2f2f;
   background-size: 20%;
   background-repeat: repeat;
-  border: 1px solid gray;
+  font-size: 0;
+  line-height: 0;
+}
+
+canvas {
+  font-size: 0;
+  line-height: 0;
 }
 
 </style>

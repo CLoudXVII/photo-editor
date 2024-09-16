@@ -86,21 +86,22 @@ export default {
 .content {
   width: 200px;
   height: 100%;
-  border-right: 1px solid gray;
   display: flex;
   flex-direction: column;
   row-gap: 20px;
   padding: 10px;
-  align-items: baseline;
+  align-items: flex-start;
 }
 
 .color {
+  margin: 0 auto;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  column-gap: 10px;
+  row-gap: 16px;
   margin-top: 10px;
+  align-items: center;
 
   &__img{
   height: 35px;
@@ -116,6 +117,7 @@ export default {
   &__inf{
     display: flex;
     flex-direction: column;
+    align-items: center;
     row-gap: 10px;
   }
 }
