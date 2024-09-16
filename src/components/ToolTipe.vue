@@ -31,6 +31,7 @@ export default {
 .container{
   position: relative;
 }
+
 .tooltipe {
   text-decoration: underline;
   cursor: pointer;
@@ -54,4 +55,5 @@ export default {
     }
   }
 }
+
 </style>

@@ -347,6 +347,7 @@ export default {
   border-radius: 10px;
   border: #32373d solid 1px;
 }
+
 .modal {
   position: absolute;
   top: 70px;
@@ -421,6 +422,7 @@ export default {
     height: 20px;
   }
 }
+
 .header {
 
   &__text {
@@ -451,4 +453,5 @@ export default {
   transform: rotate(45deg);
   line-height: 0;
 }
+
 </style>

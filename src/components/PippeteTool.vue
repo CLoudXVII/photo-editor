@@ -303,12 +303,14 @@ export default {
   border-radius: 50px;
   width: 23px;
   height: 23px;
+
   &:checked {
     border: 2px solid black;
   }
 }
 
 .header {
+
   &__text {
     font-size: 20px;
   }
@@ -331,4 +333,5 @@ export default {
   transform: rotate(45deg);
   line-height: 0;
 }
+
 </style>

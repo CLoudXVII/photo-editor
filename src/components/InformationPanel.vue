@@ -82,7 +82,7 @@ export default {
 };
 </script>
   
-  <style lang="scss" scoped>
+<style lang="scss" scoped>
 .content {
   width: 200px;
   height: 100%;
@@ -124,6 +124,7 @@ export default {
 
 .font{
   color: black;
+
   &_center{
     align-self: center;
   }
@@ -141,5 +142,6 @@ export default {
   padding: 5px;
   outline: none;
 }
+
 </style>
   

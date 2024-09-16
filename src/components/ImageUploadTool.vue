@@ -111,9 +111,11 @@ export default {
 }
 
 .header {
+
   &__text {
     font-size: 20px;
   }
+
   &__button {
     background: none;
     border: none;
@@ -121,6 +123,7 @@ export default {
     cursor: pointer;
     transition: 0.3s;
   }
+
   &__button:hover {
     transform: scale(1.25);
   }
@@ -157,5 +160,6 @@ export default {
   border-radius: 5px;
   outline: none;
 }
+
 </style>
     

@@ -136,5 +136,6 @@ export default {
     justify-self: right;
   }
 }
+
 </style>
   

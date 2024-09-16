@@ -345,43 +345,15 @@ export default {
       this.x8 = value[2][1];
       this.x9 = value[2][2];
     },
-    // x1: function(value){
-    //     this.kernel[0][0] = value
-    //     this.type = ""
-    // },
-    // x2: function(value){
-    //     this.kernel[0][1] = value
-    // },
-    // x3: function(value){
-    //     this.kernel[0][2] = value
-    // },
-    // x4: function(value){
-    //     this.kernel[1][0] = value
-    // },
-    // x5: function(value){
-    //     this.kernel[1][1] = value
-    // },
-    // x6: function(value){
-    //     this.kernel[1][2] = value
-    // },
-    // x7: function(value){
-    //     this.kernel[2][0] = value
-    // },
-    // x8: function(value){
-    //     this.kernel[2][1] = value
-    // },
-    // x9: function(value){
-    //     this.kernel[2][2] = value
-    // },
   },
 };
 </script>
 <style lang="scss" scoped>
 .modal {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  background-color: #778da9;
+  top: 70px;
+  left: 210px;
+  background-color: white;
   width: 25vw;
   padding: 15px;
   border-radius: 20px;
@@ -454,9 +426,11 @@ export default {
 }
 
 .header {
+
   &__text {
     font-size: 20px;
   }
+
   &__button {
     background: none;
     border: none;
@@ -465,4 +439,5 @@ export default {
     cursor: pointer;
   }
 }
+
 </style>
