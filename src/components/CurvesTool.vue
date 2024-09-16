@@ -2,7 +2,12 @@
   <div class="modal">
     <div class="modal__container header">
       <p class="header__text">Градационное преобразование</p>
-      <button class="header__button" @click="$emit('show')">X</button>
+      <button class="header__button" @click="$emit('show')">
+        <span class="cross">+</span>
+      </button>
+    </div>
+    <div class="modal__line chart">
+      <canvas id="chart" width="200" height="200" ref="chart"></canvas>
     </div>
     <div class="modal__line">
       <div class="modal__element">
@@ -63,19 +68,16 @@
     <div class="modal__line">
       <label>
         <input type="checkbox" v-model="prewiev" @change="applyPrewiev" />
-        Включить предпросмотр
+        Предпросмотр
       </label>
-    </div>
-    <div class="modal__line">
       <div class="modal__element">
         <button class="button" @click="correctImage(), $emit('apply')">Применить</button>
       </div>
       <div class="modal__element">
-        <button class="button" @click="reset">Сброс</button>
+        <button class="button button-reset" @click="reset">
+          <img src="../assets/svg/reset-button.svg" alt="Сброс">
+        </button>
       </div>
-    </div>
-    <div class="modal__line chart">
-      <canvas id="chart" width="200" height="200" ref="chart"></canvas>
     </div>
   </div>
 </template>
@@ -347,15 +349,15 @@ export default {
 }
 .modal {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  background-color: #778da9;
+  top: 70px;
+  left: 210px;
+  background-color: white;
   width: 25vw;
   padding: 15px;
-  border-radius: 20px;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
-  row-gap: 7px;
+  row-gap: 8px;
 
   &__container {
     display: flex;
@@ -368,12 +370,17 @@ export default {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
+
   }
 
-  &__element {
-    width: 100%;
-    text-align: center;
+  &__line:last-child {
+    justify-content: flex-end;
+    column-gap: 8px;
+
+    & label {
+      margin-right: auto;
+    }
   }
 
   &__label {
@@ -385,7 +392,6 @@ export default {
   }
 
   &__input {
-    width: 30%;
     border-radius: 6px;
     padding: 3px;
     border: 1px solid black;
@@ -399,6 +405,7 @@ export default {
   border-radius: 0;
   width: 23px;
   height: 23px;
+
   &:checked {
     border: 2px solid black;
   }
@@ -406,20 +413,42 @@ export default {
 
 .button{
   border: 1px solid black;
-  width: 90px;
-  padding: 4px;
-  border-radius: 4px;
+  padding: 4px 8px;
+  border-radius: 10px;
+  cursor: pointer;
+
+  & img {
+    height: 20px;
+  }
 }
 .header {
+
   &__text {
     font-size: 20px;
   }
+
   &__button {
     background: none;
     border: none;
-    color: red;
-    font-size: 24px;
+    font-size: 48px;
     cursor: pointer;
+    transition: 0.3s;
   }
+
+  &__button:hover {
+    transform: rotate(90deg);
+  }
+}
+
+.button-reset {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+.cross {
+  display: block;
+  transform: rotate(45deg);
+  line-height: 0;
 }
 </style>

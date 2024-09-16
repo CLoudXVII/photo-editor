@@ -322,7 +322,7 @@ export default {
   }
 
   &__button:hover {
-    transform: scale(1.25);
+    transform: rotate(90deg);
   }
 }
 
