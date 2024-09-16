@@ -1,45 +1,43 @@
 <template>
   <div class="modal-wrapper">
     <div class="modal">
-      <div class="modal__container header">
-        <p class="header__text">Масштабирование</p>
-        <button class="header__button" @click="$emit('show')">X</button>
+      <div class="header">
+        <p class="header__text">Изменение размера</p>
+        <button class="header__button" @click="$emit('show')">
+          <span class="cross">+</span>
+        </button>
       </div>
       <label>
-        Способ изменения размера
+        Единицы измерения:
         <select v-model="type" @change="chooseType">
           <option value="pixels">В пикселях</option>
           <option value="persentage">В процентах</option>
         </select>
       </label>
       <div class="modal__container">
-        <label>
-          Ширина:
-          <input
-            class="input"
-            type="number"
-            min="1"
-            v-model="width"
-            @change="updateWidth"
-          />
-        </label>
-        <label>
-          Высота:
-          <input
-            class="input"
-            type="number"
-            min="1"
-            v-model="height"
-            @change="updateHeight"
-          />
-        </label>
+        <input
+          class="input"
+          type="number"
+          min="1"
+          v-model="width"
+          @change="updateWidth"
+        />
+        <span>x</span>
+        <input
+          class="input"
+          type="number"
+          min="1"
+          v-model="height"
+          @change="updateHeight"
+        />
       </div>
       <div class="modal__container">
-        <p>Разрешение до: {{ resNow }} MP</p>
-        <p>Разрешение после: {{ resAfter }} MP</p>
+        Разрешение
+        <p>До: {{ resNow }} MP</p>
+        <p>После: {{ resAfter }} MP</p>
       </div>
       <label>
-        Сохранять заданные пропорции:
+        Сохранять пропорции:
         <input type="checkbox" v-model="proprtions" />
       </label>
       <label>
@@ -149,7 +147,7 @@ label {
 .modal-wrapper {
   height: 100vh;
   width: calc(100vw - 17px);
-  background-color: rgba(27, 38, 59, 0.9);
+  background-color: rgba(0, 0, 0, 0.5);
   position: absolute;
   left: 0;
   top: 0;
@@ -162,24 +160,29 @@ label {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #e0e1dd;
+  background-color: white;
   height: 40vh;
-  width: 35vw;
+  width: 25vw;
   padding: 10px;
-  border-radius: 4px;
+  border-radius: 10px;
   border: 1px solid black;
   opacity: 1;
 
   &__container {
+    position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    position: relative;
+    justify-content: center;
+    column-gap: 8px;
   }
 }
 
 .header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   
   &__text {
     font-size: 20px;
@@ -188,23 +191,45 @@ label {
   &__button {
     background: none;
     border: none;
-    color: red;
-    font-size: 24px;
+    font-size: 48px;
     cursor: pointer;
+    transition: 0.3s;
+  }
+
+  &__button:hover {
+    transform: scale(1.25);
   }
 }
 
+.cross {
+  display: block;
+  transform: rotate(45deg);
+  line-height: 0;
+}
+
 .button {
-  background-color: #778da9;
-  border: 1px solid #0d1b2a;
+  background-color: white;
+  border: 1px solid grey;
   border-radius: 10px;
   padding: 10px;
   height: fit-content;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: black;
+    color: white;
+  }
 }
 
 .input {
+  padding-left: 15px;
   height: 20px;
-  border-radius: 5px;
+  border-radius: 10px;
+  border: 1px solid gray;
+  text-align: center;
+  font-size: 14px;
+  width: 100px;
+  outline: none;
 }
 
 </style>

@@ -441,24 +441,24 @@ export default {
 
 <style lang="scss" scoped>
 .photo-editor {
-  height: 100%;
+  height: calc(100% - 3px);
   display: grid;
   grid-template-columns: 200px auto 200px;
-  grid-template-rows: 80px auto 80px;
+  grid-template-rows: 60px auto 80px;
 }
 
 .main-title {
   font-size: 45px;
   color: black;
   font-weight: bold;
-  grid-column: 1 / 2;
+  grid-column: 2 / 3;
   grid-row: 1 / 2;
   align-self: center;
   justify-self: center;
 }
 
 .header {
-  grid-row: 1 / 2;
+  grid-row: 3 / 4;
   grid-column: 2 / 3;
   align-self: center;
 }

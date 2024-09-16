@@ -7,13 +7,13 @@
         </button>
       </li>
       <li class="tool-panel__item">
-        <button class="button" :disabled="!startImage" :class="{ active: isPippete}" @click="$emit('Pippete')" title='Пипетка (для выбора дополнительного цвета зажмите клавишу "Alt")'>
-          <img class="button__img" src="../assets/svg/pipette.svg" alt="">
+        <button class="button" :disabled="!startImage" :class="{ active: isGrab}" @click="$emit('grab')" title="Перетащить изображение">
+          <img class="button__img" src="../assets/svg/grab-image.svg" alt="">
         </button>
       </li>
       <li class="tool-panel__item">
-        <button class="button" :disabled="!startImage" :class="{ active: isGrab}" @click="$emit('grab')" title="Перетащить изображение">
-          <img class="button__img" src="../assets/svg/grab-image.svg" alt="">
+        <button class="button" :disabled="!startImage" :class="{ active: isPippete}" @click="$emit('Pippete')" title='Пипетка (для выбора дополнительного цвета зажмите клавишу "Alt")'>
+          <img class="button__img" src="../assets/svg/pipette.svg" alt="">
         </button>
       </li>
       <li class="tool-panel__item">
@@ -100,7 +100,6 @@ export default {
   border-radius: 10px;
   padding: 7px;
   height: fit-content;
-  margin-left: 20px;
   transition: 0.2s;
 
   &__img{
@@ -121,10 +120,21 @@ export default {
 }
 
 .tool-panel {
-  height: 80px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: auto;
+
+  &__item {
+    justify-self: center;
+  }
+
+  &__item:first-child {
+    justify-self: left;
+  }
+
+  &__item:last-child {
+    justify-self: right;
+  }
 }
 </style>
   

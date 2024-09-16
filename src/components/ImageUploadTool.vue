@@ -97,7 +97,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: lightgray;
+  background-color: white;
   padding: 16px;
   border-radius: 10px;
   border: 1px solid gray;
