@@ -2,7 +2,9 @@
   <div class="modal">
     <div class="modal__container header">
       <p class="header__text">Фильтрация</p>
-      <button class="header__button" @click="$emit('show')">X</button>
+      <button class="header__button" @click="$emit('show')">
+        <span class="cross">+</span>
+      </button>
     </div>
     <div class="modal__line">
       <div class="modal__element matrix">
@@ -67,6 +69,8 @@
           />
         </div>
       </div>
+    </div>
+    <div class="modal__line">
       <div class="modal__element type">
         <label class="modal__label">
           <input type="radio" name="type" value="same" v-model="type"  />
@@ -89,15 +93,15 @@
     <div class="modal__line">
       <label>
         <input type="checkbox" v-model="prewiev" @change="applyPrewiev" />
-        Включить предпросмотр
+          Предпросмотр
       </label>
-    </div>
-    <div class="modal__line">
       <div class="modal__element">
         <button class="modal__button" @click="filter(), $emit('apply')">Применить</button>
       </div>
       <div class="modal__element">
-        <button class="modal__button" @click="reset">Сбросить</button>
+        <button class="modal__button button-reset" @click="reset">
+          <img src="../assets/svg/reset-button.svg" alt="Сброс">
+        </button>
       </div>
     </div>
   </div>
@@ -354,12 +358,11 @@ export default {
   top: 70px;
   left: 210px;
   background-color: white;
-  width: 25vw;
   padding: 15px;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  row-gap: 20px;
+  row-gap: 16px;
 
   &__container {
     display: flex;
@@ -375,16 +378,18 @@ export default {
     justify-content: center;
   }
 
+  &__line:last-child {
+    column-gap: 16px;
+  }
+
   &__element {
-    width: 50%;
     text-align: center;
   }
 
   &__button{
-    width: 90px;
     border: 1px solid black;
-    padding: 4px;
-    border-radius: 5px;
+    padding: 4px 8px;
+    border-radius: 10px;
   }
 
   &__label {
@@ -396,16 +401,14 @@ export default {
 
   &__input {
     width: 30%;
-    border-radius: 6px;
+    border-radius: 5px;
     padding: 3px;
     border: 1px solid black;
   }
 }
 
 .type {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  text-align: left;
 }
 
 .matrix {
@@ -417,6 +420,7 @@ export default {
     display: flex;
     flex-direction: row;
     column-gap: 5px;
+    justify-content: center;
   }
 
   &__input {
@@ -434,10 +438,30 @@ export default {
   &__button {
     background: none;
     border: none;
-    color: red;
-    font-size: 24px;
+    font-size: 48px;
     cursor: pointer;
+    transition: 0.3s;
   }
+
+  &__button:hover {
+    transform: rotate(90deg);
+  }
+}
+
+.button-reset {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+
+  & img {
+    height: 20px;
+  }
+}
+
+.cross {
+  display: block;
+  transform: rotate(45deg);
+  line-height: 0;
 }
 
 </style>
