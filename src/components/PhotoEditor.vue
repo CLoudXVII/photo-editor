@@ -282,30 +282,38 @@ export default {
       this.startImage = this.$refs.modal.result;
       this.height = this.$refs.modal.result.height;
       this.width = this.$refs.modal.result.width;
+      this.nowH = Math.round(this.height);
+      this.nowW = Math.round(this.width);
       if (
         this.height > this.canvas.height - 100 ||
         this.width > this.canvas.width - 100
       ) {
         let scale_factor = Math.min(
-          this.canvas.width / this.width,
-          this.canvas.height / this.height
+          (this.canvas.width - 100) / this.width,
+          (this.canvas.height - 100) / this.height
         );
-        let newWidth = this.width * scale_factor - 100;
-        let newHeight = this.height * scale_factor - 100;
-        this.nowH = Math.round(newHeight);
-        this.nowW = Math.round(newWidth);
-        let x = this.canvas.width / 2 - newWidth / 2;
-        let y = this.canvas.height / 2 - newHeight / 2;
+        const scaleRange = [100, 75, 50, 25, 12];
+        const scaleFactorPers = scale_factor * 100;
+        let diff = Math.abs(scaleFactorPers - 100);
+        let scaleValue = 100;
+        scaleRange.forEach(element => {
+          if (Math.abs(scaleFactorPers - element) < diff) {
+            scaleValue = element;
+            diff = Math.abs(scaleFactorPers - element);
+          }
+        });
+        this.$refs.sidebar.scale = scaleValue;
+        let x = this.canvas.width / 2 - this.width / 2;
+        let y = this.canvas.height / 2 - this.height / 2;
         this.dx = Math.round(x);
         this.dy = Math.round(y);
-        this.ctx.drawImage(this.$refs.modal.result, x, y, newWidth, newHeight);
+        this.ctx.drawImage(this.$refs.modal.result, x, y, this.width, this.height);
+        this.scaleImage();
       } else {
         let x = this.canvas.width / 2 - this.height / 2;
         let y = this.canvas.height / 2 - this.width / 2;
         this.dx = Math.round(x);
         this.dy = Math.round(y);
-        this.nowH = Math.round(this.height);
-        this.nowW = Math.round(this.width);
         this.ctx.drawImage(
           this.$refs.modal.result,
           x,
@@ -359,7 +367,7 @@ export default {
       const imageDataURL = this.canvasHelper.toDataURL("image/png");
       const link = document.createElement("a");
       link.href = imageDataURL;
-      link.download = "my_image.png";
+      link.download = "image.png";
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -407,12 +415,8 @@ export default {
         this.height > this.canvas.height - 100 ||
         this.width > this.canvas.width - 100
       ) {
-        let scale_factor = Math.min(
-          this.canvas.width / this.width,
-          this.canvas.height / this.height
-        );
-        let newWidth = (this.width * scale_factor - 100) * scalePers;
-        let newHeight = (this.height * scale_factor - 100) * scalePers;
+        let newWidth = (this.width * scalePers);
+        let newHeight = (this.height * scalePers);
         this.nowH = Math.round(newHeight);
         this.nowW = Math.round(newWidth);
         let x = this.canvas.width / 2 - newWidth / 2;
