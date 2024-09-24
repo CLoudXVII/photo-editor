@@ -17,13 +17,6 @@
         <option value="250">250%</option>
         <option value="300">300%</option>
       </select>
-      <div v-if="resl != null" class="color">
-          <div class="color__img" :style="string"></div>
-          <div class="color__inf">
-            <p class="color__font">{{ color }}</p>
-            <p class="color__font">Hex: {{ HEX }}</p>
-          </div>
-        </div>
     </template>
   </div>
 </template>
@@ -37,7 +30,6 @@ export default {
     height: Number,
     width: Number,
     showData: Boolean,
-    resl: Array,
     state: String
   },
   data() {
@@ -51,33 +43,6 @@ export default {
   methods: {
   },
   computed: {
-    string() {
-      return (
-        "background-color: rgb(" +
-        this.resl[0] +
-        "," +
-        this.resl[1] +
-        "," +
-        this.resl[2] +
-        ");"
-      );
-    },
-    color() {
-      return (
-        "rgb(" + this.resl[0] + ", " + this.resl[1] + ", " + this.resl[2] + ")"
-      );
-    },
-    HEX() {
-      return (
-        "#" +
-        [this.resl[0], this.resl[1], this.resl[2]]
-          .map((x) => {
-            const hex = x.toString(16);
-            return hex.length === 1 ? "0" + hex : hex;
-          })
-          .join("")
-      );
-    },
   }
 };
 </script>
@@ -91,35 +56,6 @@ export default {
   row-gap: 20px;
   padding: 10px;
   align-items: flex-start;
-}
-
-.color {
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  row-gap: 16px;
-  margin-top: 10px;
-  align-items: center;
-
-  &__img{
-  height: 35px;
-  width: 35px;
-  border-radius: 50%;
-  border: 1px solid gray;
-  }
-
-  &__font{
-    color: black;
-  }
-
-  &__inf{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    row-gap: 10px;
-  }
 }
 
 .font{

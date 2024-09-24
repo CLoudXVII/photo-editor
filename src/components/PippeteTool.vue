@@ -63,12 +63,17 @@
         <p>{{ Y2 }}</p>
       </div>
     </div>
+    <div class="modal__element" v-if="contrastRatio">
+        <p :style ="{ color: contrastRatio < 4.5 ? 'red' : 'black' }">
+          Contrast {{ contrastRatio }}:1
+        </p>
+    </div>
     </div>
   </div>
 </template>
 <script>
 export default {
-  name: "PippeteeModal",
+  name: "PippeteModal",
   props: {
     resl: Array,
     startX: Number,
@@ -153,13 +158,9 @@ export default {
       _b *= 100;
 
       // Коэффициенты преобразования RGB в XYZ
-      let x =
-        Math.round((_r * 0.4124564 + _g * 0.3575761 + _b * 0.1804375) * 10) /
-        10;
-      let y =
-        Math.round((_r * 0.2126729 + _g * 0.7151522 + _b * 0.072175) * 10) / 10;
-      let z =
-        Math.round((_r * 0.0193339 + _g * 0.119192 + _b * 0.9503041) * 10) / 10;
+      let x = Math.round((_r * 0.4124564 + _g * 0.3575761 + _b * 0.1804375) * 10) / 10;
+      let y = Math.round((_r * 0.2126729 + _g * 0.7151522 + _b * 0.072175) * 10) / 10;
+      let z = Math.round((_r * 0.0193339 + _g * 0.119192 + _b * 0.9503041) * 10) / 10;
 
       this.XYZ = [x, y, z];
 
